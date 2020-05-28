@@ -1,10 +1,10 @@
+import 'forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:orix_food_delivery/classes/screen_arguments.dart';
 import 'package:orix_food_delivery/classes/setup_button.dart';
 import 'package:orix_food_delivery/constants.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:orix_food_delivery/screens/Home.dart';
-import 'package:orix_food_delivery/screens/forgot_password.dart';
+import 'package:orix_food_delivery/screens/home/Home.dart';
 import 'package:orix_food_delivery/services/firebase_auth.dart';
 import 'package:orix_food_delivery/services/firebase_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';

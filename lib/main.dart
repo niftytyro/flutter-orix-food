@@ -1,10 +1,10 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:orix_food_delivery/constants.dart';
-import 'package:orix_food_delivery/screens/Home.dart';
-import 'package:orix_food_delivery/screens/Login.dart';
-import 'package:orix_food_delivery/screens/Splash.dart';
-import 'package:orix_food_delivery/screens/Welcome.dart';
+import 'package:orix_food_delivery/screens/home/Home.dart';
+import 'package:orix_food_delivery/screens/login/Login.dart';
+import 'package:orix_food_delivery/screens/splash/Splash.dart';
+import 'package:orix_food_delivery/screens/welcome/Welcome.dart';
 
 void main() {
   runApp(OrixFoodApp());

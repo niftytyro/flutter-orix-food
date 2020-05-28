@@ -5,7 +5,7 @@ import 'package:orix_food_delivery/classes/setup_button.dart';
 import 'package:orix_food_delivery/constants.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:orix_food_delivery/screens/Home.dart';
+import 'package:orix_food_delivery/screens/home/Home.dart';
 import 'package:orix_food_delivery/services/firebase_auth.dart';
 import 'package:orix_food_delivery/services/firebase_firestore.dart';
 

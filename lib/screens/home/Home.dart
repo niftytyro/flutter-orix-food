@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:orix_food_delivery/classes/screen_arguments.dart';
 import 'package:orix_food_delivery/services/firebase_auth.dart';
 import 'package:orix_food_delivery/services/firebase_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class HomeScreen extends StatelessWidget {
   static const id = '/home';

@@ -1,8 +1,8 @@
+import 'login_entry.dart';
+import 'signup_entry.dart';
 import 'package:flutter/material.dart';
 import 'package:orix_food_delivery/classes/Logo.dart';
-import 'package:orix_food_delivery/classes/login_entry.dart';
 import 'package:orix_food_delivery/classes/screen_arguments.dart';
-import 'package:orix_food_delivery/classes/signup_entry.dart';
 import 'package:orix_food_delivery/constants.dart';
 import 'package:orix_food_delivery/services/firebase_auth.dart';
 import 'package:orix_food_delivery/services/firebase_firestore.dart';
