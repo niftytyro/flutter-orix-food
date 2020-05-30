@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:orix_food_delivery/classes/screen_arguments.dart';
 import 'package:orix_food_delivery/classes/setup_button.dart';
 import 'package:orix_food_delivery/constants.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:orix_food_delivery/services/firebase_auth.dart';
-import 'package:orix_food_delivery/services/firebase_firestore.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   final FirebaseAuthentication auth;
@@ -18,7 +16,7 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  bool _validEmail = null;
+  bool _validEmail;
   TextEditingController _emailController = TextEditingController();
 
   Widget getEmailSuffix() {
@@ -34,7 +32,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   }
 
   @override
-  Widget initState() {
+  void initState() {
     super.initState();
     _emailController.text = widget.email;
   }

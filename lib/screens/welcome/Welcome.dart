@@ -1,10 +1,12 @@
+import 'package:orix_food_delivery/screens/welcome/text_box.dart';
+
 import 'logo_painter.dart';
+import 'background_container.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/rendering.dart';
 import 'package:orix_food_delivery/classes/screen_arguments.dart';
 import 'package:orix_food_delivery/constants.dart';
-import 'package:orix_food_delivery/classes/setup_button.dart';
 import 'package:orix_food_delivery/screens/login/Login.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -17,7 +19,7 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   int _index = 0;
   final List _foodRow = <Image>[
-    Image.asset('resources/images/welcome_icons/burger1', scale: 2.25),
+    Image.asset('resources/images/welcome_icons/burger1.png', scale: 2.25),
     Image.asset('resources/images/welcome_icons/carrot.png', scale: 2.25),
     Image.asset('resources/images/welcome_icons/pizza-slice1.png', scale: 2.25),
     Image.asset('resources/images/welcome_icons/doughnut1.png', scale: 2.25),
@@ -116,75 +118,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   text: introText[_index],
                   isLast: _index == _backgroundImages.length - 1,
                   argsObj: argsObj,
+                  onPressed: () {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, LoginScreen.id, (route) => false,
+                        arguments: argsObj);
+                  },
                 ),
               ),
             ]),
-      ),
-    );
-  }
-}
-
-class BackgroundContainer extends StatelessWidget {
-  final String url;
-
-  BackgroundContainer({@required this.url});
-
-  @override
-  Widget build(BuildContext context) {
-    return Image.asset(
-      url,
-      scale: 0.75,
-    );
-  }
-}
-
-class TextBox extends StatelessWidget {
-  final List text;
-  final bool isLast;
-  final AuthScreenArguments argsObj;
-
-  TextBox({@required this.text, @required this.isLast, @required this.argsObj});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.325,
-      alignment: Alignment.bottomCenter,
-      padding: EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 0.0),
-      decoration: BoxDecoration(
-        color: kPrimaryColor,
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(40.0), topRight: Radius.circular(40.0)),
-      ),
-      child: Stack(
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              Text(
-                text[0],
-                style: kIntroHeader,
-              ),
-              SizedBox(
-                height: 15.0,
-              ),
-              Text(
-                text[1],
-                style: kIntroDescription,
-              ),
-            ],
-          ),
-          Container(
-            alignment: Alignment.bottomCenter,
-            child: SetupButton(
-              title: isLast ? 'Let\'s Eat' : 'Skip',
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, LoginScreen.id, (route) => false,
-                    arguments: argsObj);
-              },
-            ),
-          )
-        ],
       ),
     );
   }

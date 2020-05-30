@@ -9,8 +9,8 @@ import 'package:orix_food_delivery/services/firebase_firestore.dart';
 
 class LoginScreen extends StatefulWidget {
   static const id = '/login';
-  FirebaseAuthentication auth;
-  FirestoreDB firestoreDB;
+  FirebaseAuthentication _auth;
+  FirestoreDB _firestoreDB;
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -19,10 +19,12 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
+  FocusNode _node;
 
   @override
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
+    _node = FocusNode();
     super.initState();
   }
 
@@ -30,8 +32,8 @@ class _LoginScreenState extends State<LoginScreen>
   Widget build(BuildContext context) {
     final bottom = MediaQuery.of(context).viewInsets.bottom;
     AuthScreenArguments args = ModalRoute.of(context).settings.arguments;
-    widget.firestoreDB = args.firestoreDB;
-    widget.auth = args.auth;
+    widget._firestoreDB = args.firestoreDB;
+    widget._auth = args.auth;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       resizeToAvoidBottomPadding: false,
@@ -116,9 +118,11 @@ class _LoginScreenState extends State<LoginScreen>
                     child: TabBarView(
                       children: [
                         LoginEntry(
-                            auth: widget.auth, firestoreDB: widget.firestoreDB),
+                            auth: widget._auth,
+                            firestoreDB: widget._firestoreDB),
                         SignupEntry(
-                            auth: widget.auth, firestoreDB: widget.firestoreDB),
+                            auth: widget._auth,
+                            firestoreDB: widget._firestoreDB),
                       ],
                       controller: _tabController,
                     ),
@@ -130,5 +134,11 @@ class _LoginScreenState extends State<LoginScreen>
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _node.dispose();
+    super.dispose();
   }
 }

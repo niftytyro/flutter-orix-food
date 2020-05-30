@@ -22,11 +22,11 @@ class SignupEntry extends StatefulWidget {
 }
 
 class _SignupEntryState extends State<SignupEntry> {
-  bool _validEmail = null;
+  bool _validEmail;
   bool _showPassword = false;
   final _passwordFieldFocusNode = FocusNode();
   final _emailFieldFocusNode = FocusNode();
-  Gender _selectedGender = null;
+  Gender _selectedGender;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _nameController = TextEditingController();
@@ -223,13 +223,13 @@ class _SignupEntryState extends State<SignupEntry> {
                         String uid = await widget.auth.signUp(
                             email: _emailController.text,
                             password: _emailController.text);
-                        widget.firestoreDB.addUser(
-                            email: _emailController.text,
-                            name: _nameController.text,
-                            gender: _selectedGender == Gender.female
-                                ? 'female'
-                                : 'male');
                         if (uid != null) {
+                          widget.firestoreDB.addUser(
+                              email: _emailController.text,
+                              name: _nameController.text,
+                              gender: _selectedGender == Gender.female
+                                  ? 'female'
+                                  : 'male');
                           Navigator.pushNamedAndRemoveUntil(
                               context, HomeScreen.id, (route) => false,
                               arguments: AuthScreenArguments(

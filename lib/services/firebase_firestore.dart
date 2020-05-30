@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:orix_food_delivery/classes/food_item.dart';
 
 enum addUserStatus { ALREADY_EXISTS, SUCCESS }
 
@@ -32,10 +33,27 @@ class FirestoreDB {
       if (data.documents.length == 0)
         name = gender = null;
       else {
-        name = data.documents[0]['name'];
-        gender = data.documents[0]['gender'];
+        name = data.documents[0].data['name'];
+        gender = data.documents[0].data['gender'];
       }
     });
     return {'name': name, 'gender': gender, 'email': email};
+  }
+
+  Future<List> getFoodItems() async {
+    List<FoodItem> items = [];
+    _firestore.collection("items").snapshots().listen((snapshot) {
+      snapshot.documents.forEach((element) {
+        items.add(FoodItem(
+            name: element.data['name'],
+            calories: element.data['calories'],
+            ingredients: element.data['ingredients'],
+            rating: element.data['rating'],
+            price: element.data['price'],
+            tags: element.data['tags'],
+            timeToCook: element.data['time_to_cook']));
+      });
+    });
+    return items;
   }
 }

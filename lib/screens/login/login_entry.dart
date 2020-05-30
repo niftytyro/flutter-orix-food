@@ -20,7 +20,7 @@ class LoginEntry extends StatefulWidget {
 }
 
 class _LoginEntryState extends State<LoginEntry> {
-  bool _validEmail = null;
+  bool _validEmail;
   bool _showPassword = false;
   final _nextFieldFocusNode = FocusNode();
   TextEditingController _emailController = TextEditingController();

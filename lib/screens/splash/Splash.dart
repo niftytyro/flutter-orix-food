@@ -13,8 +13,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatelessWidget {
   static const id = '/splash';
-  FirebaseAuthentication _auth = FirebaseAuthentication();
-  FirestoreDB _firestoreDB = FirestoreDB();
+  final FirebaseAuthentication _auth = FirebaseAuthentication();
+  final FirestoreDB _firestoreDB = FirestoreDB();
 
   @override
   Widget build(BuildContext context) {
