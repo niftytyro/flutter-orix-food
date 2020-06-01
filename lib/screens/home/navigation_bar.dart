@@ -4,6 +4,10 @@ import 'package:orix_food_delivery/custom_icons.dart';
 import 'navbar_row.dart';
 
 class NavigationBar extends StatefulWidget {
+  final List icons;
+
+  NavigationBar({@required this.icons});
+
   @override
   _NavigationBarState createState() => _NavigationBarState();
 }
@@ -11,51 +15,57 @@ class NavigationBar extends StatefulWidget {
 class _NavigationBarState extends State<NavigationBar> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Positioned(
-          bottom: 0,
-          child: Stack(
-            children: <Widget>[
-              CustomPaint(
-                painter: NavBarPainter(),
-                size: Size(MediaQuery.of(context).size.width, 60.0),
-              ),
-              NavBarRow(),
-            ],
+    return Container(
+      height: 100,
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            bottom: 0,
+            child: Stack(
+              children: <Widget>[
+                CustomPaint(
+                  painter: NavBarPainter(),
+                  size: Size(MediaQuery.of(context).size.width, 60.0),
+                ),
+                NavBarRow(icons: widget.icons.sublist(1)),
+              ],
+            ),
           ),
-        ),
-        Container(
-          padding: EdgeInsets.only(bottom: 30.0),
-          child: Align(
-            alignment: Alignment.bottomCenter,
+          GestureDetector(
+            onTap: widget.icons[0][1],
             child: Container(
-              padding: EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: kSecondaryColor,
-                border: Border.all(
-                    color: Color(0xFFFFFFFF),
-                    width: 4,
-                    style: BorderStyle.solid),
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 5.0,
-                      spreadRadius: 3.0,
-                      offset: Offset(0.0, 5.0))
-                ],
-              ),
-              width: 80,
-              height: 80,
-              child: Icon(
-                CustomIcons.shopping_bag,
-                size: 30.0,
+              padding: EdgeInsets.only(bottom: 30.0),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: kSecondaryColor,
+                    border: Border.all(
+                        color: Color(0xFFFFFFFF),
+                        width: 4,
+                        style: BorderStyle.solid),
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 5.0,
+                          spreadRadius: 3.0,
+                          offset: Offset(0.0, 5.0))
+                    ],
+                  ),
+                  width: 80,
+                  height: 80,
+                  child: Icon(
+                    widget.icons[0][0],
+                    size: 30.0,
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

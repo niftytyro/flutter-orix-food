@@ -4,6 +4,10 @@ import 'package:orix_food_delivery/custom_icons.dart';
 import 'package:orix_food_delivery/constants.dart';
 
 class NavBarRow extends StatefulWidget {
+  final List icons;
+
+  NavBarRow({this.icons});
+
   @override
   _NavBarRowState createState() => _NavBarRowState();
 }
@@ -23,28 +27,15 @@ class _NavBarRowState extends State<NavBarRow> {
           transform: Matrix4.translationValues(0, 10.0, 0),
           width: 0.35 * MediaQuery.of(context).size.width,
           padding: EdgeInsets.only(left: 20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              NavBarButton(
-                iconData: CustomIcons.home_outline,
-                onPressed: () {
-                  setState(() {
-                    _currentIndex = 0;
-                  });
-                },
-                selected: _currentIndex == 0,
-              ),
-              NavBarButton(
-                iconData: CustomIcons.book_open_outline,
-                onPressed: () {
-                  setState(() {
-                    _currentIndex = 1;
-                  });
-                },
-                selected: _currentIndex == 1,
-              ),
-            ],
+          child: NavBarButton(
+            iconData: widget.icons[0][0],
+            onPressed: () {
+              setState(() {
+                _currentIndex = 0;
+              });
+              widget.icons[0][1]();
+            },
+            selected: _currentIndex == 0,
           ),
         ),
         SizedBox(width: 0.3 * MediaQuery.of(context).size.width),
@@ -52,28 +43,15 @@ class _NavBarRowState extends State<NavBarRow> {
           transform: Matrix4.translationValues(0, 10.0, 0),
           width: 0.35 * MediaQuery.of(context).size.width,
           padding: EdgeInsets.only(right: 20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              NavBarButton(
-                iconData: CustomIcons.bookmark_outline,
-                onPressed: () {
-                  setState(() {
-                    _currentIndex = 2;
-                  });
-                },
-                selected: _currentIndex == 2,
-              ),
-              NavBarButton(
-                iconData: CustomIcons.notification_outline,
-                onPressed: () {
-                  setState(() {
-                    _currentIndex = 3;
-                  });
-                },
-                selected: _currentIndex == 3,
-              ),
-            ],
+          child: NavBarButton(
+            iconData: widget.icons[1][0],
+            onPressed: () {
+              setState(() {
+                _currentIndex = 3;
+              });
+              widget.icons[1][1]();
+            },
+            selected: _currentIndex == 3,
           ),
         ),
       ],
@@ -111,6 +89,7 @@ class _NavBarButtonState extends State<NavBarButton> {
         icon: Icon(
           widget.iconData,
           color: widget.selected ? kSecondaryColor : kSubTitleColor,
+          size: 30.0,
         ),
         onPressed: widget.onPressed,
       ),

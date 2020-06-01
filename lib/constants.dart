@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 const kAppName = 'Orix Food';
 
-const Color kPrimaryColor = Color(0xFFFBFBFB);
+const Color kPrimaryColor = Color(0xFFFBFBFF);
 const Color kSecondaryColor = Color(0xFFFFC529);
 
 const Color kSubTitleColor = Color(0xFFCCCCCC);
-const Color kDarkBlack = Color(0xFF3F3F3F);
+const Color kDarkBlack = Color(0xFF3F3F4F);
 const TextStyle kIntroHeader =
     TextStyle(fontFamily: 'Gilroy-Bold', fontSize: 30.0);
 const TextStyle kIntroDescription =

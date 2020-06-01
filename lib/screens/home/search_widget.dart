@@ -19,54 +19,40 @@ class SearchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Container(
-          width: 0.65 * MediaQuery.of(context).size.width,
-          child: TextField(
-            controller: _searchController,
-            autofocus: false,
-            decoration: InputDecoration(
-              border: kSearchBorder,
-              disabledBorder: kSearchBorder,
-              enabledBorder: kSearchBorder,
-              errorBorder: kSearchBorder,
-              focusedBorder: kSearchBorder,
-              focusedErrorBorder: kSearchBorder,
-              fillColor: kSearchFillColor,
-              focusColor: kSearchFillColor,
-              hoverColor: kSearchFillColor,
-              filled: true,
-              hintText: 'Search food...',
-              hintStyle: kSearchHintStyle,
-              prefixIcon: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  SizedBox(width: 20.0),
-                  Icon(
-                    FontAwesomeIcons.search,
-                    color: Colors.black87,
-                    size: 20.0,
-                  ),
-                  SizedBox(width: 15.0),
-                ],
+    return Container(
+      child: TextField(
+        controller: _searchController,
+        autofocus: false,
+        decoration: InputDecoration(
+          border: kSearchBorder,
+          disabledBorder: kSearchBorder,
+          enabledBorder: kSearchBorder,
+          errorBorder: kSearchBorder,
+          focusedBorder: kSearchBorder,
+          focusedErrorBorder: kSearchBorder,
+          fillColor: kSearchFillColor,
+          focusColor: kSearchFillColor,
+          hoverColor: kSearchFillColor,
+          filled: true,
+          hintText: 'Search food...',
+          hintStyle: kSearchHintStyle,
+          prefixIcon: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              SizedBox(width: 20.0),
+              Icon(
+                FontAwesomeIcons.search,
+                color: Colors.black87,
+                size: 20.0,
               ),
-            ),
-            cursorColor: Colors.black87,
-            keyboardType: TextInputType.text,
-            onSubmitted: onSubmitted,
+              SizedBox(width: 15.0),
+            ],
           ),
         ),
-        Container(
-          width: 60.0,
-          height: 60.0,
-          decoration: BoxDecoration(
-              color: kSecondaryColor,
-              borderRadius: BorderRadius.circular(20.0)),
-          child: Icon(CustomIcons.filter),
-        ),
-      ],
+        cursorColor: Colors.black87,
+        keyboardType: TextInputType.text,
+        onSubmitted: onSubmitted,
+      ),
     );
   }
 }

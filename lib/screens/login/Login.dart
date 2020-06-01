@@ -38,14 +38,14 @@ class _LoginScreenState extends State<LoginScreen>
       resizeToAvoidBottomInset: false,
       resizeToAvoidBottomPadding: false,
       backgroundColor: kPrimaryColor,
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        child: SingleChildScrollView(
-          reverse: true,
-          child: Padding(
-            padding: EdgeInsets.only(bottom: bottom),
+      body: Padding(
+        padding: EdgeInsets.only(bottom: bottom),
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
+          child: SingleChildScrollView(
+            reverse: true,
             child: Container(
               child: Column(
                 children: <Widget>[

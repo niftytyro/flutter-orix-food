@@ -40,20 +40,56 @@ class FirestoreDB {
     return {'name': name, 'gender': gender, 'email': email};
   }
 
-  Future<List> getFoodItems() async {
+  Future<List<FoodItem>> getFoodItems(String tag) async {
     List<FoodItem> items = [];
-    _firestore.collection("items").snapshots().listen((snapshot) {
+    if (tag == null) {
+      QuerySnapshot snapshot =
+          await _firestore.collection("items").getDocuments();
       snapshot.documents.forEach((element) {
         items.add(FoodItem(
             name: element.data['name'],
             calories: element.data['calories'],
             ingredients: element.data['ingredients'],
-            rating: element.data['rating'],
-            price: element.data['price'],
+            rating: element.data['rating'].toDouble(),
+            price: element.data['price'].toDouble(),
             tags: element.data['tags'],
             timeToCook: element.data['time_to_cook']));
       });
-    });
+    } else {
+      QuerySnapshot snapshot = await _firestore
+          .collection("items")
+          .where("tags", arrayContains: tag)
+          .getDocuments();
+      snapshot.documents.forEach((element) {
+        items.add(FoodItem(
+            name: element.data['name'],
+            calories: element.data['calories'],
+            ingredients: element.data['ingredients'],
+            rating: element.data['rating'].toDouble(),
+            price: element.data['price'].toDouble(),
+            tags: element.data['tags'],
+            timeToCook: element.data['time_to_cook']));
+      });
+    }
     return items;
+  }
+
+  Future<FoodItem> getSingleFoodItem(String name) async {
+    FoodItem item;
+    QuerySnapshot snapshot = await _firestore
+        .collection("items")
+        .where("name", isEqualTo: name)
+        .getDocuments();
+    snapshot.documents.forEach((element) {
+      item = FoodItem(
+          name: element.data['name'],
+          calories: element.data['calories'],
+          ingredients: element.data['ingredients'],
+          rating: element.data['rating'].toDouble(),
+          price: element.data['price'].toDouble(),
+          tags: element.data['tags'],
+          timeToCook: element.data['time_to_cook']);
+    });
+    return item;
   }
 }

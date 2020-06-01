@@ -1,8 +1,8 @@
 class FoodItem {
   final int calories;
-  final List<String> ingredients;
-  final List<String> tags;
-  final List<int> timeToCook;
+  final List ingredients;
+  final List tags;
+  final List timeToCook;
   final String name;
   final double price;
   final double rating;
